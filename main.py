@@ -3,7 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import calmap
-import matplotlib.pyplot as plt
 
 #Section: append_weather_data.py
 # Directory where all the CSV files are located
@@ -58,9 +57,9 @@ product_req_df = pd.read_csv('product_req.csv')
 
 # Filtering conditions from 'product_req.csv'
 noras_zero = 0
-min_temp_condition = product_req_df_df['Min_Temp'][noras_zero]
-max_temp_condition = product_req_df_df['Max_Temp'][noras_zero]
-total_precip_condition = product_req_df_df['Total_Precip'][noras_zero]
+min_temp_condition = product_req_df['Min_Temp'][noras_zero]
+max_temp_condition = product_req_df['Max_Temp'][noras_zero]
+total_precip_condition = product_req_df['Total_Precip'][noras_zero]
 
 
 # Apply the filtering conditions to 'appended_weather_data.csv'
@@ -139,3 +138,4 @@ new_grouped_df.set_index('Datetime', inplace=True)
 plt.figure(figsize=(20, 10))
 calmap.yearplot(new_grouped_df['Counts'], cmap='YlGn', fillcolor='#f5f5f5', daylabels=["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], dayticks=[0, 1, 2, 3, 4, 5, 6], monthticks=[5], linewidth=2)
 plt.show()
+
