@@ -22,7 +22,7 @@ graph TD;
   Details_Sheet -->|Contains| tbl_PMO_Details
   Funding_Sheet -->|Contains| tbl_PMO_Funding
   Financials_Sheet -->|Contains| tbl_PMO_WD_Financials
-  ...
+
   tbl_PMO_WD_Financials -->|Has Field| Budget
   tbl_PMO_WD_Financials -->|Has Field| Actuals
   tbl_PMO_WD_Financials -->|Has Field| Commitments
