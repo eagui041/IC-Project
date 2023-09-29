@@ -1,19 +1,8 @@
 # IC Project
 
 
-![Visualization of the codebase](./diagram.svg)
-
 ```mermaid
----
-title: PMO Input.xlsx
----
-flowchart LR
-    id;
-    name
-
-```
-```mermaid
-graph TD;
+graph LR;
   PMO_Input -->|Contains| Project_Sheet
   PMO_Input -->|Contains| Details_Sheet
   PMO_Input -->|Contains| Funding_Sheet
