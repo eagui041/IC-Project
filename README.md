@@ -12,7 +12,7 @@ flowchart LR
     name
 
 ```
-'''mermaid
+```mermaid
 graph TD;
   PMO_Input -->|Contains| Project_Sheet
   PMO_Input -->|Contains| Details_Sheet
@@ -28,4 +28,4 @@ graph TD;
   tbl_PMO_WD_Financials -->|Has Field| Commitments
   tbl_PMO_WD_Financials -->|Has Field| Obligations
   tbl_PMO_WD_Financials -->|Has Field| Available_Budget
-'''
+```
