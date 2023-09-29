@@ -101,7 +101,7 @@ graph LR;
   tbl_PMO_WD_Financials -->|Has Field| Commitments
   tbl_PMO_WD_Financials -->|Has Field| Obligations
   tbl_PMO_WD_Financials -->|Has Field| Available_Budget
-  tbl_PMO_WD_Financials -->|Has Field| Planner
+  tbl_PMO_WD_Financials -->|Has Field| Planner;
 
 linkStyle 0 stroke-width:2px,fill:none,stroke:green;
 linkStyle 1 stroke-width:2px,fill:none,stroke:green;
