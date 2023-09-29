@@ -8,6 +8,6 @@
 title: Node
 ---
 flowchart LR
-    id
+    id <-- name
 
 ```
