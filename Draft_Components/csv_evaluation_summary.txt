@@ -1,0 +1,21 @@
+### SMART Goal
+The goal was to evaluate a CSV file to ensure it contains specific columns that meet the updated requirements of your project. The final criteria were:
+
+1. Minimum Temperature (`Min Temp (°C)`)
+2. Maximum Temperature (`Max Temp (°C)`)
+3. Precipitation (`Total Precip (mm)`)
+4. Year (`Year`)
+5. Month (`Month`)
+6. Day (`Day`)
+
+### Progress
+- Initially evaluated a CSV file (`climate-daily.csv`) but it didn't meet all the original criteria.
+- Updated the project requirements twice based on your feedback.
+- Successfully evaluated a new CSV file (`en_climate_daily_ON_6105976_1927_P1D.csv`) against the revised criteria.
+
+### Findings
+The new CSV file meets all your updated criteria. It contains data ranging for the year 1927, months 1-12, and days 1-31. Temperature and precipitation data are also present and variable.
+
+### Next Steps
+- You have the option to merge this data with other yearly files.
+- Further data analysis can be performed based on your project needs.

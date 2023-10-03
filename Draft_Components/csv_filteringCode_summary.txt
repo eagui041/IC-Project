@@ -1,0 +1,22 @@
+
+SMART Goal Summary
+------------------
+Goal: To generate Python code in a file called 'main.py' that reads data from 'appended_weather_data.csv', 
+filters it based on the conditions in 'sealer_requirements.csv', and stores the filtered data in a DataFrame.
+
+Progress So Far
+----------------
+1. Examined the structure of both 'appended_weather_data.csv' and 'sealer_requirements.csv'.
+2. Determined the filtering conditions based on 'sealer_requirements.csv'.
+3. Successfully filtered the DataFrame 'appended_weather_data.csv' using Python code.
+4. Generated and saved the Python code in a file named 'main.py'.
+
+Code Adjustments
+----------------
+Adjusted the specific block of code to replace '0' with a variable called 'noras_zero':
+
+# Filtering conditions from 'sealer_requirements.csv'
+noras_zero = 0
+min_temp_condition = sealer_requirements_df['Min_Temp'][noras_zero]
+max_temp_condition = sealer_requirements_df['Max_Temp'][noras_zero]
+total_precip_condition = sealer_requirements_df['Total_Precip'][noras_zero]

@@ -1,0 +1,6 @@
+The programs needs to load data, and prepare it for visualizations.
+opportunity_pairs = any pair of days, as in days next to one another, that are both found in filtered_weather_data.csv
+User should be prompted for a visual choice.
+The first visual: Bar graph displaying opportunity_pairs per month.
+The second visual: calmap heatmap showing a count by day of year. 
+The data spans 100 years.

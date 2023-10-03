@@ -1,0 +1,27 @@
+
+## Summary Sheet
+
+### Objective
+To efficiently load historical weather data into a Python-based tool for subsequent analysis. The data consists of 100 CSV files, each containing weather data for a specific year. The user decided to append all these files into a single file for easier manipulation.
+
+### Context
+- The project aims to provide homeowners and contractors with data-driven insights into optimal weather conditions for applying driveway sealers.
+- The end goal is detailed in the project's abstract.
+
+### Decision Points
+1. **Computational Resources**: 24 GB RAM, Intel Core i7 7500U 2.7 GHz
+2. **Data Size**: Average CSV file size is 61 KB, making the total data size manageable.
+3. **File Naming Convention**: Files are named with a specific pattern like 'en_climate_daily_ON_6105976_YYYY_P1D.csv'.
+
+### Recommendations and Actions
+1. **Data Loading Method**: Recommended appending all CSV files into one based on the data size and available resources.
+2. **Implementation**: Provided a Python script to merge the CSV files and rename the columns.
+3. **Column Renaming**: Final file has the columns renamed to Min_Temp, Max_Temp, Total_Precip, Year, Month, Day.
+4. **Script Execution**: User successfully executed the script, achieving the goal of this phase.
+
+### Next Steps
+1. Proceed with data analysis, including data cleaning, feature engineering, and visualization.
+2. Optionally build predictive models if the project requires.
+
+### Additional Notes
+- User has the option to update the data in the future.

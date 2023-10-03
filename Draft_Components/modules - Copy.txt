@@ -1,0 +1,4 @@
+Module 1 – Data Collection	Data loading will be done using an import csv function. This module will be broken into sub modules. A) Manufacturer requirement input B) Weather data. Existing libraries and functions exist for loading these types of data. 
+Module 2- Data Processing	The weather data will be processed (transformed) to load relevant data only. This is not expected to take long given there are few (four) data points that are needed.
+Module 3 - Visualization	Finally, a visualization module will be used to transform the dataset into a final graphic for report purposes.
+Compilation	Bluebeam Revu or MSWord will be used to import the visualization into a product evaluation report
