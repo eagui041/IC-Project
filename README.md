@@ -4,7 +4,7 @@ Homeowners often engage contractors to apply driveway sealers to enhance and pro
 
 My Question: Based on historical weather data from the past 100 years for Ottawa, Ontario, in which months are there the most days that meet the ideal conditions for installing driveway sealer? The conditions are set in the `product_req.csv` file, currently as: days with temperatures ranging from 10°C to 38°C and zero precipitation.
 
-This script allows a user to visualize the average opportunity months and days to install a given product based on the requirements within product_req.csv.
+This script allows a user to visualize the average opportunity months and days to install a given product based on the requirements within `product_req.csv`.
 The program generates averages based on 100 years of weather_data, from Environment Canada.
 
 ## Requirements
