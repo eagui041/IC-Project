@@ -1,0 +1,21 @@
+flowchart TD
+I looked  -->  COMMENT
+COMMENT  -->  I will
+I will  -->  I will
+I will  -->  Merge Data
+Merge Data  -->  Created sealerrequirements
+Created sealerrequirements  -->  GPT4ADA INPUT
+GPT4ADA INPUT  -->  ERROR Should
+ERROR Should  -->  Starting new
+Starting new  -->  Spent
+Spent  -->  I am
+I am  -->  I can
+I can  -->  Reviewing progress
+Reviewing progress  -->  DEVELOPMENT PHASE
+DEVELOPMENT PHASE  -->  Begin converting
+Begin converting  -->  IB Detailed
+IB Detailed  -->  Rearranged IC
+Rearranged IC  -->  I am
+I am  -->  Generating comments
+Generating comments  -->  Generating README
+Generating README  -->  Generating Mermaid
