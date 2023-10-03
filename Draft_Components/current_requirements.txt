@@ -1,0 +1,5 @@
+Data Description: The dataset includes a table with columns named Min_Temp, Max_Temp, Total_Precip, Year, Month, and Day. The "Month" column contains numeric values representing each of the 12 months (e.g., 5 for May).
+
+Objective: Utilizing Python, calculate the average number of occurrences (days) per month that appear in the dataset across all the years. Any month that is not presented in the dataset should contribute zero to the average.
+
+Visualization: Create a bar graph in Python to visualize the data, where each bar corresponds to a specific month and the height of the bar depicts the average count of days for that month. If a month is not present in the dataset, its bar should either be absent or represented with zero height. The graph should solely display the x-axis, depicting the 12 months of the year, without incorporating a y-axis.

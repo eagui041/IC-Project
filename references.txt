@@ -1,0 +1,21 @@
+Libraries
+
+NumPy (Version X.X). (2023). Retrieved from https://numpy.org/
+Pandas (Version   ). (2023). Retrieved from https://pandas.pydata.org/
+calmap (Version   ). (2023). Retrieved from https://pypi.org/project/calmap/
+matplotlib (Version ). (2023). Retrieved from https://matplotlib.org/
+
+
+Resources
+1.	https://www.canada.ca/en/transparency/terms.html
+    - Source of weather_data.
+    - Source of software Cygwin to pull data.
+2.	https://www.homedepot.ca/en/home/customer-support/terms-of-use.html
+    - used to find a product.
+3.	https://www.rustoleum.ca/pages/legal/terms-and-conditions
+    - used to find weather restrictions.
+4.	https://towardsdatascience.com/create-githubs-style-contributions-plot-for-your-time-series-data-79df84ec93da
+    - used for sample code to generate calmap graph.
+5. 
+
+

@@ -4,9 +4,4 @@ trash/
 appended_weather_data.csv
 filtered_weather_data.csv
 git_commands.txt
-.gitignore
-main_with_appropriate_comments.py
-main_with_comments.py
-merge.py
-mermaid_script.txt
 revised_mermiad_script.txt

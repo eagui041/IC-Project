@@ -1,0 +1,211 @@
+START 06:07PM 2023-09-24
+
+1. I looked up the data. I tried a new link this time (https://climatedata.ca/download)
+	A. Found the data for "OTTAWA" and "OTTAWA BRITANNIA" (closer to my home)
+	B. I have downloaded a csv of weather data for two stations, between January 1st 1923 and September 2023.
+
+2. I will evaluate the data next; first with Excel, and then with ChatGPT4-Advanced Data Analysis.
+	A. I opened the csv in excel, converted the data to a table and confirmed that OTTTAWA and OTTAWA BRITANNIA  is present. I can confirm that the table has 36 columns, and 8647 rows.
+	B. Now I will evaluate the data in ChatGPT-4-ADA. The objective is to confirm that I have the necessary data to carry on with my project.
+	C. The data returned important data, however values for MAX_RELATIVE_HUMIDTY were not found. I will re-look at data in Excel.
+	D. I've confirmed the missing data. And there seems to be more missing data (recent years etc.). I will re-evaluate how to gather the data.
+	E. I have installed Cygwin following some research.
+	F. I followed DataDownloadOptionsDocument_Cygwin_EN.pdf instructions and successfully downloaded data from Yellowknife. I will now look for OTTAWA, and OTTAWA BRITANNIA, using "Station Inventory EN.csv".
+	G. I copied the csv file to .xlsx so I can manipulate the data in table format.
+	H. Having reviewed the data, I have decided to remove OTTAWA, and OTTAWA BRITANNIA as station data sources. OTTAWA CDA has more available data, given the span of 1889 and 2023. I will run Cygwin to download OTTAWA CDA data 'seq 1922-2022'. ('for year in `seq 1923 2022`;do for month in `seq 1 1`;do wget --content-disposition "https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=4333&Year=${year}&Month=${month}&Day=14&timeframe=2&submit= Download+Data" ;done;done')
+	J. The data has been successfully downloaded. It still does not contain relative humidity. Given that, I have decided to not evaluate for RH. 
+	K. I re-evaluated a sample file and finalized review of my criteria within ChatGPT4-ADA conversation 'csv_evaluation_summary.txt'.
+
+3. Merge Data. I now need to decide weather to merge all of the data into a single csv or load each year independently. I will evaluate with GPT.
+	A. GPT generated a python script. I need to evaluate how filepaths are used to navigate to weather_data folder.
+	B. I created an IC Project folder, added weather_data within it. I also installed pandas.
+		i) ERROR This line was entered at 12:19AM 2023-09-24 to ensure future installs of venv. This took place around entry 3.B.
+	C.ISSUE the python script did not take into account the file naming convention. Updating GPT with sample file names. RESOLVED.
+	D. Revised code is successful. data saved as appended_weather_data.csv
+	E. RISK Review of data showed headings that may have processing issues because of character use (eg. Min Temp (Â°C)). Revised code generates columns: Min_Temp	Max_Temp	Total_Precip	Year	Month	Day   MITIGATED
+	F. Data successfully merged into appended_weather_data.csv
+	G. Saved python script as append_weather_data.py
+
+4. Created sealer_requirements.csv file with Min_Temp, Max_Temp, Total_Precip (10,38,0)
+
+5. GPT4-ADA INPUT"Need to generate code (main.py) to load file appended_weather_data.csv (read only), and filter for sealer_requirements.csv, this data is to be stored in a data frame."
+	A. generated filter_data.py script which generates viable days 'filtered_weather_data.csv'.
+	B. quick review of data appears successful.
+6. ERROR Should have built a my_requirements.txt file. 
+	A. Working on outline. Challenges to flush out requirements. Running GPT.
+	B. Ran out of GPT4-ADA access, re-evaluating with GPT3
+	C. Generating code with: ('i have a table with Min_Temp, Max_Temp, Total_Precip,Year,Month,Day columns. In python: I want to express the average count of days per month across the entire dataset. the csv filename is filtered_weather_data.csv')
+	D. Testing under main.py (prior replaced as main0.py)
+	E. ERROR I did not anticipate requiring matplotlib despite it's benefits. SOLUTION installed.
+	F. Testing: Plotting successful. Image not useful. need to evaluate current_requirments.txt 
+	G. GPT3.5 INPUT: My current_requirements are:("I have a table with columns named Min_Temp, Max_Temp, Total_Precip, Year, Month, and Day.I want to calculate the average number of days per month in the entire dataset using Python. Additionally, I want to create a bar graph to visualize this data. The graph should have months displayed on the x-axis and values on the bars, without a y-axis. The data contains numeric values for months. ex. 5 for May etc. I want to compile the data as average counts per month across all the years. The end result should be no more than 12 months across the x axis. Adjust my current_requirements.")
+	H. Loaded script into month_count.py. 
+	J. Result was not successful. Months were filled, even for months that should have no values.
+	K. Switched to OpenAI platform using GPT4, refined current_requirements.txt to: ("Data Description: The dataset includes a table with columns named Min_Temp, Max_Temp, Total_Precip, Year, Month, and Day. The "Month" column contains numeric values representing each of the 12 months (e.g., 5 for May). Objective: Utilizing Python, calculate the average number of occurrences (days) per month that appear in the dataset across all the years. Any month that is not presented in the dataset should contribute zero to the average. Visualization: Create a bar graph in Python to visualize the data, where each bar corresponds to a specific month and the height of the bar depicts the average count of days for that month. If a month is not present in the dataset, its bar should either be absent or represented with zero height. The graph should solely display the x-axis, depicting the 12 months of the year, without incorporating a y-axis.")
+	L. Loaded into GPT3.5 result:('import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming you have your data in a CSV file named "weather_data.csv"
+# Replace this with the actual path to your dataset
+file_path = "weather_data.csv"
+
+# Read the dataset into a pandas DataFrame
+df = pd.read_csv(file_path)
+
+# Group the data by month and calculate the count of occurrences for each month
+month_counts = df.groupby('Month')['Day'].count()
+
+# Create a list of months (1 to 12)
+months = list(range(1, 13))
+
+# Initialize a dictionary to store the average count of days per month
+average_counts = {month: 0 for month in months}
+
+# Calculate the average count of days for each month
+for month, count in month_counts.items():
+    average_counts[month] = count / len(df['Year'].unique())  # Divide by the number of unique years
+
+# Create a bar graph to visualize the average counts
+plt.bar(average_counts.keys(), average_counts.values(), align='center')
+plt.xticks(months)
+plt.xlabel('Month')
+plt.title('Average Days per Month')
+plt.show()
+')
+	M. Successful plot_test_2.png
+	N. TASK month_count.py ready for review.
+
+BREAK 12:07AM 2023-09-24
+
+START 12:33PM 2023-09-24
+
+1. Starting new conversation with GPT4-ADA. Included my_process.txt and my_abstract.txt
+	A. sending IA_submission.txt, as well as some other project files.
+	B. I clarified the project progress: ('I have aquired the data. appended data using append_weather_data.py, filtered the data using filtered_weather_data.py and created a visual using month_count.py
+
+i would like to remove the report portion of the project Objective. 
+
+/save')
+
+	C. GPT4-ADA has removed the report from the objective.
+	D. ADD TOOL I took a screen grab using Windows Snipping Tool, from https://github.com/jaytaph, and created inspiration_grapic.jpg
+	E. Submitting .py files and seeking guidance for new visual from inspiration.
+	F. I made modifications to gpt_result_1.jpg ('modify as follows:
+background: black
+x-axis: display values in text form with the following format: JAN, FEB, MAR, ...
+x-axis title: remove
+value blocks: group counts so that the highest stack does not exceed 8 blocks
+value blocks colour: not black, sort highest values with brightest colour')
+	G. I was not satisfied with gpt_result_2.jpg. 
+	H. Using google:'create github style data visualization', I discovered an article behind a paywall:'https://towardsdatascience.com/create-githubs-style-contributions-plot-for-your-time-series-data-79df84ec93da'
+	I. Article Title: Create GitHub’s style contributions plot for your Time Series data by Parul Pandey
+	J. Parul shares the process through the article which i saved as ('Create GitHub’s style contributions plot for your Time Series data _ by Parul Pandey _ Towards Data Science.pdf') TASK Research calmap and seaborn for visualiztions.
+	K. I now need to extract the code in the article to provide as sample_graphic_gen.py
+	L. ADD TOOL Using HARPAai I em extracting the code. Code saved.
+	M. Running mimicking of sample. It tried to open the file. LESSON I should have saved it as a text or instructed gpt to not open it.
+	N. Now we are adjusting the script to align with my data.
+	O. Lengthy buildup of gpt conversation. Switching to Platform to merge month_count.py and visualization style of sample_graphic_gen.py
+	P. created improved_visual.py
+	Q. pip install calmap
+	R. pip install seaborn
+	S. successful generation of image plot_test_3.jpg, results are further away from desired output. Code refinement needed.
+
+BREAK 02:42PM 2023-09-24
+
+START 10:55AM 2023-09-25
+
+1. Spent 1hr learning github basics. Wish I knew that sooner! LOL Next project will be operated using git and github.
+2. I am re-evaluating the process of generating the improved plot. I will focus on existing code "month_count.py" to modify the block responsible for generating the graph.
+	A. splicing code from HarpaAI into harpa_month_count.py LESSON found the script on an open site. Keep reading next time.
+	B. Verfied value average_counts is assigned to values 1:12
+	C. ERROR read pythonhosted.org/calmap/#api and learned that calmap must be indexed by a DatetimeIndex. I will now evaluate the data to see if it is possible. 
+	D. Generating code with GPT4-ADA
+	E. Positive results plot_test_4.png re structuring to adjust null values to zero.
+	F. Improving by Prompt: Find the smallest non-zero value in daily_counts. Replace zero values in daily_counts with this smallest non-zero value.
+	G. Finalized code generation to day_count_gen.py
+	H. ISSUE I am realizing that the default value for yearplot is the first year. Finding out how to address count per day across all the years.	
+	I. Fixing issue with GPT4-ADA. Struggling but ran: (User
+let's think through the problem in a step by step fashion. 1. I can confirm that there are more than one days that meet the requirement. 2. Our code can confirm if the row meets the criteria. 3. we now need to find all the same days by grouping the data into Month:Day pairs that are the same. 4. We can now sum every eligible day in step 2 for every day pair in step 3.
+
+ChatGPT
+Your step-by-step reasoning is insightful and aligns well with the objective. Let's summarize:
+
+You've confirmed that there are multiple days in the dataset that meet the weather criteria.
+The code successfully identifies rows that meet the criteria and assigns a 'Counts' value accordingly.
+The next step is to group the data by identical "Month:Day" pairs.
+Finally, we will sum the 'Counts' for each "Month:Day" pair to find out how many times each day meets the criteria over the span of the data.
+Would you like to proceed with implementing these steps in the code?)
+	J.ISSUE Month:Day missing year to work with yearplot. adjusting by introducing synthetic year to create DatetimeIndex.
+	K. Success! plot_test_7.csv
+
+BREAK 3:30PM 2023-09-25
+
+START 9:08PM 2023-09-25
+
+1. Reviewing progress to date. revised my_abstract.txt removed 'The visual will be integrated into a product evaluation report.' This element was removed from the project.
+2. DEVELOPMENT PHASE is now complete. Testing/editing can commence. Switching to Git control to improve revisioning.
+3. Begin converting project to Github repo.
+	A. Review Youtube:  	https://www.youtube.com/watch?v=RGOj5yH7evk&t=1821s
+	B. Paused work on Git to finalize detailed design.
+4. IB Detailed Design pdf submitted
+
+BREAK 1:19AM 2023-09-26
+
+START 9:45AM 2023-09-26
+
+1. Rearranged IC Project folder. dotPY files kept in main directory: append_weather_data.py, filter_weather_data.py, visual_option1.py(previously month_count.py), visual_option2.py (previously improved_visual.py), product_req.csv (priviously product_requirements.csv).
+
+BREAK 1:00PM 2023-09-26
+
+START 9:40PM 2023-10-02
+
+1. I am now trying to merge the append_weather_data.py, filter_weather_data.py and visualization scripts into a single script. I hope to prompt the user for a visualization choice.
+	A.Used GPT4-ADA to merge files into a single test.py
+	B.Encountered errors: SettingWithCopyWarning: (A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead)
+	C.Error appears to be related to pandas. Re-ran with Chat for corrections.
+	D.Results complete, successful. Renamed to main.py
+2. Generating comments using GPT4-ADA.
+	A. Results unsuccessful. Excessive comments added. See main_with_appropriate_comments.py
+	B. Re-did comments using Github Copilot within VSCode
+3. Generating README.md based on my_process.txt, my_abstract.txt and instructions:"The main purpose of my script is explained in my_requirements.txt and my_abstarct.txt . It is a simple script, and main.py is the only one. The data is stored in a weather_data folder. Do not attempt to test the script."
+	A. Generation 80% successful, editing to finalize work.
+4. Generating Mermaid Flowchart to visualize my_process.txt. "goal is to generate a Mermaid flow chart script based on the high-level information in "my_process.txt", focusing on high-level steps and showing iterations."
+	A. Un-successful generation. Revised instructions to "show" GPT4-ADA the formatting to use, and "Revise each component in the flow chart to have one or two words that summarize the high-level steps."
+	B. Un-successful at generating flowchart. Abandoning task.
+
+BREAK 11:47PM 2023-10-02
+	
+START 1:20PM 2023-10-03
+
+1. Uploading project for submission. Program draft parts saved under Draft_Components. Includes
+append_weather_data.py
+filter_weather_data.py
+visual_option1.py
+visual_option2.py
+appended_weather_data.csv
+appended_weather_data.xlsx
+append_weather_data.py
+avg_per_month.py
+current_requirements.txt
+day_count_gen.py
+filtered_weather_data.csv
+filter_weather_data.py
+git_commands.txt
+harpaAI_gen.py
+plot_harpaAI_1.png
+plot_test_1.png
+plot_test_1.py
+plot_test_2.png
+plot_test_3.png
+plot_test_4.png
+plot_test_5.png
+plot_test_6.png
+plot_test_7.png
+plot_test_7.py
+sampledata.csv
+sample_graphic_gen.py
+sealer_requirements.csv
+train.csv
+visual_option1.py
+visual_option2.py
