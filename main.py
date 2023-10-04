@@ -46,7 +46,7 @@ def visual_option1(df):
     Creates a bar graph visualization based on the input DataFrame.
     Shows the average count of days per month that meet the criteria.
     """
-    # It's often a good practice to work on a copy of the DataFrame to avoid unintentional modifications
+    # Copy the DataFrame to avoid unintentional modifications
     df = df.copy()
     
     # Use the .loc[] accessor to avoid the SettingWithCopyWarning
@@ -74,7 +74,7 @@ def visual_option2(df):
     Creates a calendar heatmap visualization based on the input DataFrame.
     Shows the count of days that meet the criteria for each month-day combination.
     """
-    # It's often a good practice to work on a copy of the DataFrame to avoid unintentional modifications
+    # Copy the DataFrame to avoid unintentional modifications
     df = df.copy()
     
     # Use the .loc[] accessor to avoid the SettingWithCopyWarning
